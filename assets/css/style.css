@@ -1,0 +1,23 @@
+
+.header-image {
+    position: relative;
+    width: 960px;
+    height: 200px;
+    border: 1px black solid;
+}
+
+
+
+
+.best-picture-image {
+    width: 200px;
+    height: 300px;
+
+}
+
+h1 {
+    position: absolute;
+    font-family: Tahoma;
+    text-align: center;
+    width: 960px;
+}
