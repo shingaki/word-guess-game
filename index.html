@@ -58,7 +58,7 @@
             var movieOscar =
                 {
                     year: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
-                    name: ["Slum Dog Millionaire", "Kings Speech", "The Artist", "Argo", "12 Years A Slave", "Birdman or (The Unexpected Virtue of Ignorance", "Spotlight", "Moonlight", "The Shape Of Water", "Green Book"],
+                    name: ["SLUM DOG MILLIONAIRE", "Kings Speech", "The Artist", "Argo", "12 Years A Slave", "Birdman or (The Unexpected Virtue of Ignorance", "Spotlight", "Moonlight", "The Shape Of Water", "Green Book"],
                     hint: ["A Mumbai teen reflects on his upbringing in the slums when he is accused of cheating on the Indian Version of \"Who Wants to be a Millionaire?",
                         "The story of King George VI, his impromptu ascension to the throne of the British Empire in 1936, and the speech therapist who helped the unsure monarch overcome his stammer.",
                         "An egomaniacal film star develops a relationship with a young dancer against the backdrop of Hollywood's silent era.",
@@ -111,7 +111,6 @@
 // replace each character in the movie name with an underscore
 
             var displayMovieName = [];
-
 
             function replaceMovieNameWithUnderScores(movieToParse) {
 
@@ -185,28 +184,40 @@
                 userGuess = event.key;
                 console.log(userGuess);
 
-                // call function to see if userGuess already guessed
-                console.log("alreadyGuessed = b4 " + alreadyGuessed);
-                console.log("before calling the function : " + userGuess);
+                // only trigger logic if alphabet or numbers are selected
 
-                alreadyGuessed = checkLetterAlreadyGuessed(userGuess, yourGuessesSoFar);
 
-                console.log("alreadyGuessed after = " + alreadyGuessed);
+                var validCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C',
+                'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+                'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
-                // check if alreadyGuessed is true
+                var charValid = validCharacters.indexOf(userGuess);
 
-                if (alreadyGuessed)
-                {
-                    alert("You already chose this letter, choose another letter");
+
+                if (charValid >= 0){
+
+
+                    // call function to see if userGuess already guessed
+                    console.log("alreadyGuessed = b4 " + alreadyGuessed);
+                    console.log("before calling the function : " + userGuess);
+
+                    alreadyGuessed = checkLetterAlreadyGuessed(userGuess, yourGuessesSoFar);
+
+                    console.log("alreadyGuessed after = " + alreadyGuessed);
+
+                    // check if alreadyGuessed is true
+
+                    if (alreadyGuessed) {
+                        alert("You already chose this letter, choose another letter");
+                    } else {
+                        // call function to append the letter
+                        console.log("call function to append the letter before");
+                        userGuess, yourGuessesSoFar = appendYourGuessesSoFar(userGuess, yourGuessesSoFar);
+                        checkUserLettersMatchMovieLetters();
+                        console.log("after replacing underscores " + displayMovieName);
+                    }
                 }
-
-                else {
-                    // call function to append the letter
-                    console.log("call function to append the letter before");
-                    userGuess, yourGuessesSoFar = appendYourGuessesSoFar(userGuess, yourGuessesSoFar);
-                }
-
-
             }
 
 
@@ -214,7 +225,6 @@
             {
                 var letterAlreadyGuessed = false;
                 var passedInUserGuess = guessesSoFar;
-                var strUserInput = userInput;
 
                 console.log("userInput = " + userInput);
                 console.log("passedInUserGuesses = " + passedInUserGuess);
@@ -229,7 +239,7 @@
                     console.log("n =" + n);
                     if (n >= 0) {
                         letterAlreadyGuessed = true;
-                    }
+                    } else letterAlreadyGuessed = false;
 
                 }
                 return letterAlreadyGuessed;
@@ -250,6 +260,27 @@
                 console.log("after appending userInput and appendLetter = " + userInput, appendLetter);
 
                 return (userInput, appendLetter);
+            }
+
+
+            function checkUserLettersMatchMovieLetters()
+            {
+                console.log("oscarMovieName = " + oscarMovieName);
+                console.log("oscarDisplayMovieName = " + displayMovieName );
+                console.log("userInput " + userGuess);
+                console.log("oscarMovieName length = " + oscarMovieName.length);
+
+                var matchMovieName = oscarMovieName;
+                var arrayMatchMovieName = matchMovieName;
+                console.log("arrayMatchMovieName" + arrayMatchMovieName);
+
+                for (var i = 0; arrayMatchMovieName.length > i; i++)
+                {
+                    console.log("looping" + i);
+                    if (userGuess == arrayMatchMovieName[i]) {
+                        displayMovieName[i] = userGuess;
+                    }
+                }
             }
         })
 
