@@ -1,7 +1,7 @@
 
 .header-image {
     position: relative;
-    width: 960px;
+    /*width: 960px;*/
     height: 200px;
     border: 1px black solid;
 }
@@ -21,3 +21,30 @@ h1 {
     text-align: center;
     width: 960px;
 }
+
+.left-side {
+    border: 1px black solid;
+    height: 600px;
+}
+
+.right-side
+{
+    border: 1px black solid;
+    height: 600px;
+}
+
+h4 {
+    font-family: Times;
+    font-size: large;
+    text-align: center;
+}
+
+.hangman {
+    font-family: "Helvetica Neue";
+    font-size: xx-large;
+    text-align: center;
+}
+
+
+
+
