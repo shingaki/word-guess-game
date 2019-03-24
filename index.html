@@ -176,6 +176,7 @@
             var yourGuessesSoFar = "";
             var numberOfGuessesLeft = 9;
             var alreadyGuessed = false;
+            var movieCheckIfWon;
 
 
             document.onkeyup = function (event) {
@@ -212,10 +213,13 @@
                         alert("You already chose this letter, choose another letter");
                     } else {
                         // call function to append the letter
-                        console.log("call function to append the letter before");
                         userGuess, yourGuessesSoFar = appendYourGuessesSoFar(userGuess, yourGuessesSoFar);
+                        // check if userInput match any Letters in the Movie Name
                         checkUserLettersMatchMovieLetters();
                         console.log("after replacing underscores " + displayMovieName);
+                        // check if player won
+                        didPlayerWin();
+
                     }
                 }
             }
@@ -272,15 +276,31 @@
 
                 var matchMovieName = oscarMovieName;
                 var arrayMatchMovieName = matchMovieName;
+
                 console.log("arrayMatchMovieName" + arrayMatchMovieName);
 
                 for (var i = 0; arrayMatchMovieName.length > i; i++)
                 {
-                    console.log("looping" + i);
                     if (userGuess == arrayMatchMovieName[i]) {
                         displayMovieName[i] = userGuess;
                     }
                 }
+            }
+
+            function didPlayerWin()
+            {
+                console.log('displayMovieName = ' + displayMovieName);
+                console.log('oscarMovieName ' + oscarMovieName);
+
+                var matchMovieTitle = displayMovieName.join('');
+
+                console.log("-- " + matchMovieTitle);
+
+                if (matchMovieTitle == oscarMovieName)
+                {
+                    console.log("Congratulations You Won")
+                }
+                else console.log("Need to decrement guesses by 1")
             }
         })
 
