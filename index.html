@@ -183,7 +183,7 @@
             var alreadySelectedLetter = [];
             var userGuess;
             var yourGuessesSoFar = "";
-            var numberOfGuessesLeft = 12;
+            var numberOfGuessesLeft = 10;
             var alreadyGuessed = false;
             var movieCheckIfWon;
 
@@ -320,9 +320,12 @@
 
                     numberOfGuessesLeft = (numberOfGuessesLeft - 1);
 
-                    if (numberOfGuessesLeft => 0) {
+                    if (numberOfGuessesLeft >= 0) {
                         document.getElementById("guesses-left").innerHTML = "NUMBER OF GUESSES LEFT: " + numberOfGuessesLeft + "<br><br>";
                     }
+
+                    if (numberOfGuessesLeft == 0)
+                    { resetPage(); }
 
                 }
             }
@@ -330,7 +333,7 @@
             function resetPage()
             {
                 console.log("function resetting the page");
-                numberOfGuessesLeft = 15;
+                numberOfGuessesLeft = 10;
                 yourGuessesSoFar = "";
 
                 document.getElementById("guesses-left").innerHTML = "NUMBER OF GUESSES LEFT: " + numberOfGuessesLeft + "<br><br>";
