@@ -24,10 +24,8 @@
 <!-- Jumbotron with Title -->
 <div class="container">
 <div class="jumbotron" >
-    <div><strong>Who Won Picture of The Year?</strong></div>
+    <div><h1><strong>Who Won Picture of The Year?</strong></h1></div>
     <img class="header-image" src="./assets/images/12_oscar_statues.jpeg">
-    <h1 class="text-center">
-    </h1>
 </div>
 </div>
 
@@ -35,19 +33,19 @@
 
 <div class="row">
     <div class="col-lg-6 left-side">
-        <img id="movie-poster" class="best-picture-image" src="./assets/images/oscar_gold_statue1.png">
+        <img id="movie-poster" class="best-picture-image center" src="./assets/images/oscar_gold_statue1.png">
 
 
     </div>
 
     <div class="col-lg-6 right-side">
         <div><h4>Who Won Oscar's Best Picture in</h4></div>
-        <div id="movie-year"></div>
-        Here's a Hint: <div id="movie-hint"></div>
-        <div id="hangman-dashes" class="hangman"></div>
-        <div id="games-won"></div>
-        <div id="guesses-left"></div>
-        <div id="guesses-so-far"></div>
+        <div id="movie-year"></div></br>
+        Here's a Hint: <div id="movie-hint"></div></br>
+        <div id="hangman-dashes" class="hangman"></div></br>
+        <div id="games-won"></div></br>
+        <div id="guesses-left"></div></br>
+        <div id="guesses-so-far"></div></br>
         </div>
 </div>
     </div>
@@ -126,7 +124,6 @@
 
 // replace each character in the movie name with an underscore
 
-            var displayMovieName = [];
 
             function replaceMovieNameWithUnderScores(movieToParse) {
 
@@ -150,6 +147,8 @@
                 }
 
             }
+
+            var displayMovieName = [];
 
             replaceMovieNameWithUnderScores(oscarMovieName);
 
@@ -290,6 +289,16 @@
                 {
                     if (userGuess == arrayMatchMovieName[i]) {
                         displayMovieName[i] = userGuess;
+
+                        // replace the dash
+
+                        console.log("displayMovieName = " + displayMovieName);
+                        var displayMovieNameUpdated = displayMovieName.join('');
+
+
+                        document.getElementById("hangman-dashes").innerHTML = displayMovieNameUpdated;
+
+
                     }
                 }
 
@@ -369,6 +378,12 @@
 
                 $("#movie-year").replaceWith(oscarMovieYear);
                 $("#movie-hint").replaceWith(oscarMovieHint);
+
+
+                replaceMovieNameWithUnderScores(oscarMovieName);
+
+                $("#hangman-dashes").replaceWith(displayMovieName);
+
 
 
                 document.onkeyup = function (event) {
