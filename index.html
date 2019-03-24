@@ -24,9 +24,9 @@
 <!-- Jumbotron with Title -->
 <div class="container">
 <div class="jumbotron" >
+    <div><strong>Who Won Picture of The Year?</strong></div>
     <img class="header-image" src="./assets/images/12_oscar_statues.jpeg">
     <h1 class="text-center">
-        <strong>Who Won Picture of The Year?</strong>
     </h1>
 </div>
 </div>
@@ -45,7 +45,9 @@
         <div id="movie-year"></div>
         Here's a Hint: <div id="movie-hint"></div>
         <div id="hangman-dashes" class="hangman"></div>
-        <div>YOUR SCORE: <div id="games-won"></div>
+        <div id="games-won"></div>
+        <div id="guesses-left"></div>
+        <div id="guesses-so-far"></div>
         </div>
 </div>
     </div>
@@ -53,7 +55,21 @@
 <script type="text/javascript">
         $(document).ready(function() {
 
+            var gamesWon = 0;
+            var guessesLeft = 12;
+            var yourGuessesSoFar = "";
 
+
+
+            document.getElementById("games-won").innerHTML = "YOUR SCORE: " + gamesWon + "<br><br>";
+            document.getElementById("guesses-left").innerHTML = "NUMBER OF GUESSES LEFT: " + guessesLeft + "<br><br>";
+            document.getElementById("guesses-so-far").innerHTML = "YOUR GUESSES SO FAR: " + yourGuessesSoFar + "<br><br>";
+
+
+
+
+
+            var gamesWon = 0;
             // set up the array of Movies, Year, Hint, and image
             var movieOscar =
                 {
@@ -117,15 +133,12 @@
                 var oscarMovieNameLetter = movieToParse;
 
                 var ctr = oscarMovieNameLetter.length;
-                console.log("counter " + ctr);
 
                 var j = 0;
 
 
                 for (var i = 0; oscarMovieNameLetter.length > i; i++) {
 
-                    console.log("oscarMovieNameLetter :" + oscarMovieNameLetter[i]);
-                    console.log("i = " + i);
 
                     if ((!isLetter(oscarMovieNameLetter[i])) && (!isNumber(oscarMovieNameLetter[i]))) {
                         displayMovieName[j] = " ";
@@ -139,9 +152,6 @@
             }
 
             replaceMovieNameWithUnderScores(oscarMovieName);
-            console.log("displayMovieName = " + displayMovieName.length);
-            console.log("all display Movie " + displayMovieName);
-
 
             function isLetter(str) {
                 return str.length === 1 && str.match(/[a-z]/i);
@@ -152,7 +162,6 @@
             }
 
             $("#movie-year").append(oscarMovieYear);
-            console.log("here " + oscarMovieYear);
 
             $("#movie-hint").append(oscarMovieHint);
 
@@ -174,7 +183,7 @@
             var alreadySelectedLetter = [];
             var userGuess;
             var yourGuessesSoFar = "";
-            var numberOfGuessesLeft = 9;
+            var numberOfGuessesLeft = 12;
             var alreadyGuessed = false;
             var movieCheckIfWon;
 
@@ -230,9 +239,6 @@
                 var letterAlreadyGuessed = false;
                 var passedInUserGuess = guessesSoFar;
 
-                console.log("userInput = " + userInput);
-                console.log("passedInUserGuesses = " + passedInUserGuess);
-                console.log("guessAlready = " + passedInUserGuess);
 
                 if (guessesSoFar == "") {
                     console.log("guessesSoFar is blank so no duplicates exist");
@@ -263,21 +269,22 @@
 
                 console.log("after appending userInput and appendLetter = " + userInput, appendLetter);
 
+                yourGuessesSoFar = appendLetter;
+                document.getElementById("guesses-so-far").innerHTML = "YOUR GUESSES SO FAR: " + yourGuessesSoFar + "<br><br>";
+
+
                 return (userInput, appendLetter);
             }
 
 
             function checkUserLettersMatchMovieLetters()
             {
-                console.log("oscarMovieName = " + oscarMovieName);
-                console.log("oscarDisplayMovieName = " + displayMovieName );
-                console.log("userInput " + userGuess);
-                console.log("oscarMovieName length = " + oscarMovieName.length);
+                console.log("checkUserLetterMatchMoviesLetter function");
 
                 var matchMovieName = oscarMovieName;
                 var arrayMatchMovieName = matchMovieName;
 
-                console.log("arrayMatchMovieName" + arrayMatchMovieName);
+                console.log("arrayMatchMovieName " + arrayMatchMovieName);
 
                 for (var i = 0; arrayMatchMovieName.length > i; i++)
                 {
@@ -285,22 +292,103 @@
                         displayMovieName[i] = userGuess;
                     }
                 }
+
+
+
+
             }
 
             function didPlayerWin()
             {
-                console.log('displayMovieName = ' + displayMovieName);
-                console.log('oscarMovieName ' + oscarMovieName);
+                console.log('function didPlayerWin');
 
                 var matchMovieTitle = displayMovieName.join('');
+                console.log(matchMovieTitle);
+                console.log(oscarMovieName);
 
-                console.log("-- " + matchMovieTitle);
 
                 if (matchMovieTitle == oscarMovieName)
                 {
-                    console.log("Congratulations You Won")
+                    console.log("matchMovieTitle == oscarMovieName");
+                    gamesWon = gamesWon + 1;
+                    $("#games-won").append(gamesWon);
+                    document.getElementById("games-won").innerHTML = "YOUR SCORE: " + gamesWon + "<br><br>";
+                    resetPage();
+
                 }
-                else console.log("Need to decrement guesses by 1")
+                else {
+
+                    numberOfGuessesLeft = (numberOfGuessesLeft - 1);
+
+                    if (numberOfGuessesLeft => 0) {
+                        document.getElementById("guesses-left").innerHTML = "NUMBER OF GUESSES LEFT: " + numberOfGuessesLeft + "<br><br>";
+                    }
+
+                }
+            }
+
+            function resetPage()
+            {
+                console.log("function resetting the page");
+                numberOfGuessesLeft = 15;
+                yourGuessesSoFar = "";
+
+                document.getElementById("guesses-left").innerHTML = "NUMBER OF GUESSES LEFT: " + numberOfGuessesLeft + "<br><br>";
+
+                document.getElementById("guesses-so-far").innerHTML = "YOUR GUESSES SO FAR: " + yourGuessesSoFar + "<br><br>";
+
+                var oscarMovieYear = getRandomMovie();
+
+
+                [oscarMovieYear, oscarMovieName, oscarMovieHint, oscarMoviePoster] = getMovieInformation(oscarMovieYear);
+                console.log(" oscarYear " + oscarMovieYear + " oscarMovieName " + oscarMovieName + " oscarMovieHint " + oscarMovieHint + " oscarMoviePoster " + oscarMoviePoster);
+
+                $("#movie-year").replaceWith(oscarMovieYear);
+                $("#movie-hint").replaceWith(oscarMovieHint);
+
+
+                document.onkeyup = function (event) {
+
+                    // Determines which key was pressed.
+                    console.log("Game Started Over");
+                    userGuess = event.key;
+                    console.log(userGuess);
+
+                    // only trigger logic if alphabet or numbers are selected
+
+
+                    var validCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                        'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C',
+                        'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+                        'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+                    var charValid = validCharacters.indexOf(userGuess);
+
+
+                    if (charValid >= 0){
+
+                        // call function to see if userGuess already guessed
+
+                        alreadyGuessed = checkLetterAlreadyGuessed(userGuess, yourGuessesSoFar);
+
+
+                        // check if alreadyGuessed is true
+
+                        if (alreadyGuessed) {
+                            alert("You already chose this letter, choose another letter");
+                        } else {
+                            // call function to append the letter
+                            userGuess, yourGuessesSoFar = appendYourGuessesSoFar(userGuess, yourGuessesSoFar);
+                            // check if userInput match any Letters in the Movie Name
+                            checkUserLettersMatchMovieLetters();
+                            // check if player won
+                            didPlayerWin();
+
+                        }
+                    }
+                }
+
+
             }
         })
 
