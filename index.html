@@ -35,7 +35,7 @@
 
 <div class="row">
     <div class="col-lg-6 left-side">
-        <div id="movie-poster" class="best-picture-image"></div>
+        <img id="movie-poster" class="best-picture-image" src="./assets/images/oscar_gold_statue1.png">
 
 
     </div>
@@ -313,6 +313,12 @@
                     gamesWon = gamesWon + 1;
                     $("#games-won").append(gamesWon);
                     document.getElementById("games-won").innerHTML = "YOUR SCORE: " + gamesWon + "<br><br>";
+
+                    // show image and get person to click to reset the game
+                    displayMoviePoster();
+
+                    alert("You Won");
+
                     resetPage();
 
                 }
@@ -330,8 +336,23 @@
                 }
             }
 
+
+            function displayMoviePoster()
+            {
+                var path = oscarMoviePoster;
+                console.log("path " + path);
+                $("#movie-poster").attr("src",oscarMoviePoster);
+            }
+
+
+
             function resetPage()
             {
+
+                //reset the poster
+                // oscarMoviePoster = "./assets/images/oscar_gold_statue1.png";
+                // displayMoviePoster();
+
                 console.log("function resetting the page");
                 numberOfGuessesLeft = 10;
                 yourGuessesSoFar = "";
@@ -351,6 +372,10 @@
 
 
                 document.onkeyup = function (event) {
+
+                    //reset the poster
+                    oscarMoviePoster = "./assets/images/oscar_gold_statue1.png";
+                    displayMoviePoster();
 
                     // Determines which key was pressed.
                     console.log("Game Started Over");
