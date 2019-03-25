@@ -23,11 +23,11 @@
     margin-top: 100px;
 }
 
-h1 {
-    position: absolute;
+.header-1 {
     font-family: Tahoma;
     text-align: center;
-    width: 960px;
+    /*width: 960px;*/
+    color: azure;
 }
 
 .left-side {
@@ -41,10 +41,11 @@ h1 {
     height: 600px;
 }
 
-h4 {
+.header-4 {
     font-family: Times;
     font-size: large;
     text-align: center;
+    color: azure;
 }
 
 .hangman {
@@ -53,6 +54,17 @@ h4 {
     text-align: center;
 }
 
+h3 {
+    font-style: italic;
+}
 
 
 
+.header-background {
+    background-color: black !important;
+}
+
+.year {
+    font-family: "Brush Script MT";
+    font-size: xx-large;
+}
