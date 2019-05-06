@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+## Hangman
 
-You can use the [editor on GitHub](https://github.com/shingaki/word-guess-game/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+As a child, I always enjoyed playing hangman. This game is an simple online version of the hangman version I played as a child. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/shingaki/word-guess-game/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Approach
+ 1. I chose the movie theme because I love to watch movies. I enjoy old black and white movies as well as the new releases.
+ 2. I chose a sub-category of movies, focusing on the movies that won the Movie of the Year award in the last 10 years. 
+ 3. I created an array of objects. Each object included the movie name, year, as well as parameters I needed to track during the game. 
+ 4. Once I wrote the code to display the contents of the object, I began working on the logic of ensuring that the number of blanks (dashes) represented the movie name. 
+ 5. Then I wrote the logic to fill in the blanks as the player provided a correct letter. 
+ 
+ ##Challenges
+ 1. I ran into a few challenges:
+      a. Ensuring that when a letter occurred more than once in the title, that it would display correctly.
+      b. Starting the game over. 
